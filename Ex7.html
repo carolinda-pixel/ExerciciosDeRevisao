@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 7</title>
+</head>
+<body>
+    <input id="nome" type="text" placeholder="Nome do Aluno">
+    <input id="nota" type="number" placeholder="Nota">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <ol id="lista"></ol>
+    <p id="media"></p>
+
+    <script>
+        var somaNotas = 0;
+        var qtdAlunos = 0;
+
+        function cadastrar() {
+            var nome = document.getElementById("nome").value;
+            var nota = parseFloat(document.getElementById("nota").value);
+            var situacao = "";
+
+            if (nome === "" || isNaN(nota)) {
+                alert("Insira uma nota");
+            } else {
+                if (nota < 6) {
+                    situacao = "REPROVADO";
+                } else {
+                    situacao = "APROVADO";
+                }
+
+                document.getElementById("lista").innerHTML +=
+                    "<li>" + nome + " - Tirou: " + nota + " e foi " + situacao + "<br>" +
+                    "<button onclick='excluir(this, " + nota + ")'>Excluir Aluno</button><br></li>";
+
+                somaNotas += nota;
+                qtdAlunos += 1;
+
+                document.getElementById("media").innerHTML = "Média das notas dos Alunos: " + (somaNotas / qtdAlunos);
+                document.getElementById("nome").value = "";
+                document.getElementById("nota").value = "";
+            }
+        }
+
+        function excluir(botao, nota) {
+            botao.parentElement.remove();
+            somaNotas = somaNotas - nota;
+            qtdAlunos = qtdAlunos - 1;
+
+            if (qtdAlunos == 0) {
+                document.getElementById("media").innerHTML = "Média das notas dos Alunos: 0.";
+            } else {
+                document.getElementById("media").innerHTML = "Média das notas dos Alunos: " + (somaNotas / qtdAlunos);
+            }
+        }
+    </script>
+</body>
+</html>
