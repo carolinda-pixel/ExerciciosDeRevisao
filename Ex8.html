@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 8</title>
+</head>
+<body>
+    <button onclick="imagem('foto1.jpg', 'Pôr do Sol')">Ver Imagem 1</button>
+    <button onclick="imagem('foto2.jpg', 'Praia')">Ver Imagem 2</button>
+    <button onclick="imagem('foto3.jpg', 'Montanhas')">Ver Imagem 3</button>
+    <br>
+    <h3 id="nomeExibido">Nenhuma imagem selecionada</h3>
+    <img id="imagemPrincipal" src="" alt="Imagem em destaque" width="500px">
+
+    <script>
+        function imagem(caminho, nome) {
+            document.getElementById("imagemPrincipal").src = caminho;
+            document.getElementById("nomeExibido").innerHTML = nome;
+        }
+    </script>
+</body>
+</html>
