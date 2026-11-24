@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 9</title>
+</head>
+<body>
+    <input id="nome" type="text" placeholder="Nome do Produto:">
+    <input id="qtd" type="number" placeholder="Quantidade:">
+    <input id="preco" type="number" placeholder="Preço R$:">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br>
+    <ol id="lista"></ol>
+    <p id="total"></p>
+
+    <script>
+        var total = 0;
+
+        function cadastrar() {
+            var nome = document.getElementById("nome").value;
+            var qtd = parseFloat(document.getElementById("qtd").value);
+            var preco = parseFloat(document.getElementById("preco").value);
+
+            if (nome === "" || isNaN(qtd) || isNaN(preco)) {
+                alert("Preencha todos os campos corretamente");
+            } else {
+                document.getElementById("lista").innerHTML +=
+                    "<li>" + nome + " - " + qtd + " - " + preco + " " +
+                    "<button onclick='excluir(this, " + qtd + ", " + preco + ")'>Excluir</button></li>";
+
+                total = total + (qtd * preco);
+                document.getElementById("total").innerHTML = "O valor total do estoque é R$: " + total;
+
+                document.getElementById("nome").value = "";
+                document.getElementById("qtd").value = "";
+                document.getElementById("preco").value = "";
+            }
+        }
+
+        function excluir(botao, qtd, preco) {
+            botao.parentElement.remove();
+            total = total - (qtd * preco);
+            document.getElementById("total").innerHTML = "O valor total do estoque é R$: " + total;
+        }
+    </script>
+</body>
+</html>
