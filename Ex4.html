@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 4</title>
+    </head>
+    <body>
+        <input id="nome" type="text" placeholder="digite um nome">
+        <button onclick="add()">Adicionar</button>
+        <p id="lista"></p>
+       
+        <script>
+            function add(){
+                var n = document.getElementById("nome").value;
+                
+                if(n == ""){
+                    alert ("Preencha o campo obrigatório");
+                }else{
+                    document.getElementById("lista").innerHTML += "<li>" + n + "</li>";
+                    document.getElementById("nome").value = "";
+                }
+            }
+        </script>
+    </body>
+</html>
