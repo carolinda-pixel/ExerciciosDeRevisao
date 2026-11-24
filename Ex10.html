@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 10 - Gerenciador de Tarefas</title>
+</head>
+<body>
+    <input id="des" type="text" placeholder="Descrição da Tarefa">
+    <button onclick="adicionar()">Adicionar</button>
+    <br>
+    <p id="qtdTarefas">Tarefas Cadastradas: 0</p>
+    <p id="qtdConclu">Tarefas Concluídas: 0</p>
+    <p id="qtdPend">Tarefas Pendentes: 0</p>
+    <ol id="lista"></ol>
+
+    <script>
+        var qtdTarefas = 0;
+        var qtdConclu = 0;
+        var qtdPend = 0;
+
+        function atualizarContadores() {
+            document.getElementById("qtdTarefas").innerHTML = "Tarefas Cadastradas: " + qtdTarefas;
+            document.getElementById("qtdConclu").innerHTML = "Tarefas Concluídas: " + qtdConclu;
+            document.getElementById("qtdPend").innerHTML = "Tarefas Pendentes: " + qtdPend;
+        }
+
+        function adicionar() {
+            var des = document.getElementById("des").value;
+
+            if (des === "") {
+                alert("Digite a descrição da tarefa!");
+                return;
+            }
+
+            qtdTarefas += 1;
+            qtdPend += 1;
+
+            document.getElementById("lista").innerHTML +=
+                "<li>" +
+                des + " - <span class='situacao'>Pendente</span> " +
+                "<button onclick='concluir(this)'>Concluir</button> " +
+                "<button onclick='excluir(this)'>Excluir</button>" +
+                "</li>";
+
+            atualizarContadores();
+            document.getElementById("des").value = "";
+        }
+
+        function concluir(botao) {
+            var item = botao.parentElement;
+            var spanSituacao = item.querySelector(".situacao");
+
+            if (spanSituacao.innerHTML === "Pendente") {
+                spanSituacao.innerHTML = "Concluída";
+                qtdPend -= 1;
+                qtdConclu += 1;
+                botao.disabled = true;
+                atualizarContadores();
+            }
+        }
+
+        function excluir(botao) {
+            var item = botao.parentElement;
+            var situacao = item.querySelector(".situacao").innerHTML;
+
+            qtdTarefas -= 1;
+
+            if (situacao === "Pendente") {
+                qtdPend -= 1;
+            } else {
+                qtdConclu -= 1;
+            }
+
+            item.remove();
+            atualizarContadores();
+        }
+    </script>
+</body>
+</html>
