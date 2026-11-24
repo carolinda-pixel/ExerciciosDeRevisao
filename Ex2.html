@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 2</title>
+    </head>
+    <body>
+        <p id="titulo">Título</p>
+        <p id="para">Parágrafo</p>
+        <button onclick="mudar()">Mudar</button>
+       
+        <script>
+            function mudar(){
+                document.getElementById("titulo").innerHTML = "Novo Título";
+                document.getElementById("para").innerHTML = "Novo Parágrafo";
+                document.getElementsByTagName("button")[0].innerHTML = "Novo Botão";
+            }
+        </script>
+    </body>
+</html>
